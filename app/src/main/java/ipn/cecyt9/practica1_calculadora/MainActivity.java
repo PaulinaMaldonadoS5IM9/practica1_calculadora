@@ -78,10 +78,16 @@ public class MainActivity extends AppCompatActivity {
             numberX = Double.parseDouble(tv.getText().toString());
             tv.setText("");
         }
-        public void onClickButtonDelete(View miView){
+        public void onClickButtonClear(View miView){
             TextView tv = findViewById(R.id.textView);
             String value = tv.getText().toString();
             tv.setText("");
+        }
+        public void onClickButtonDelete(View miView){
+            TextView tv = findViewById(R.id.textView);
+            if(!tv.getText().toString().equals("")){
+                tv.setText(tv.getText().subSequence(0,tv.getText().length()-1));
+            }
         }
         public void onClickSum(View myView) {
             operator = "+";
@@ -103,6 +109,44 @@ public class MainActivity extends AppCompatActivity {
             operator = "^";
             onClickOperatorCaptureNumberX(myView);
         }
+        public void onClickButtonSen(View myView) {
+            TextView tv = (TextView) findViewById(R.id.textView);
+            try {
+                numberX = Double.parseDouble(tv.getText().toString());
+                double rd = Math.toRadians(numberX);
+                result = Math.sin(rd);
+                tv.setText(String.valueOf(result));
+            } catch(NullPointerException e) {
+                Toast.makeText(this,"Incorrect Number", Toast.LENGTH_SHORT).show();
+            }
+            tv.setText(result.toString());
+        }
+        public void onClickButtonCos(View myView) {
+            TextView tv = (TextView) findViewById(R.id.textView);
+
+            try {
+                numberX = Double.parseDouble(tv.getText().toString());
+                double rd = Math.toRadians(numberX);
+                result = Math.cos(rd);
+                tv.setText(String.valueOf(result));
+            } catch(NullPointerException e) {
+                Toast.makeText(this,"Incorrect Number", Toast.LENGTH_SHORT).show();
+            }
+            tv.setText(result.toString());
+        }
+        public void onClickButtonTan(View myView) {
+            TextView tv = (TextView) findViewById(R.id.textView);
+            try {
+                numberX = Double.parseDouble(tv.getText().toString());
+                double rd = Math.toRadians(numberX);
+                result = Math.tan(rd);
+                tv.setText(String.valueOf(result));
+            } catch(NullPointerException e) {
+                Toast.makeText(this,"Incorrect Number", Toast.LENGTH_SHORT).show();
+            }
+            tv.setText(result.toString());
+        }
+
         public void onClickEqual(View myView) {
             TextView tv = (TextView) findViewById(R.id.textView);
             numberY = Double.parseDouble(tv.getText().toString());
